@@ -1,0 +1,46 @@
+path:
+  model_directory: ./model-${exp.model_type}
+  mlflow_dir: ./mlruns
+exp:
+  fs: 125 # Done
+  N_fold: 3 # Done
+  random_state: 100 # Done
+  model_type: resnet1d # Done
+  data_name: vitaldb # Done
+  exp_name: ${exp.data_name}-${exp.model_type}
+  subject_dict: ../../datasets/splitted/${exp.data_name}_dataset/ # Done
+  loader: waveform # Done
+  cv: HOO # Done
+param_loader: # Done
+  ppg_norm: loc_z
+  bp_norm: glob_mm
+objective: # Done
+  type: val_mse
+  mode: min
+param_trainer: # Done
+  max_epochs: 100
+  check_val_every_n_epoch: 2
+  progress_bar_refresh_rate: 5
+  gpus: '0'
+  auto_lr_find: true
+  auto_scale_batch_size: binsearch
+param_early_stop: # Done
+  monitor: ${objective.type}
+  min_delta: 0.0
+  patience: 10
+  verbose: true
+  mode: ${objective.mode}
+param_model: ## TODO
+  N_epoch: 256
+  batch_size: 256
+  output_size: 2
+  lr: 0.001
+  sample_step: 1
+  is_se: true
+  se_ch_low: 4
+logger: # Done
+  param_ckpt:
+    monitor: ${objective.type}
+    filename: '{epoch:02d}-{${objective.type}:.3f}'
+    save_top_k: 1
+    mode: ${objective.mode}
