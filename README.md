@@ -4,6 +4,10 @@
 
 This repository is the official code for **GloGen: PPG prompts for few-shot transfer learning in blood pressure estimation**, published in [Computers in Biology and Medicine](https://www.sciencedirect.com/journal/computers-in-biology-and-medicine) in 2024.
 
+![Overview](./misc/overview.jpg)
+
+![Performance](./misc/performance.jpg)
+
 ## Dataset Download
 Download `UCI`, `Sensors`, `BCG`: https://doi.org/10.6084/m9.figshare.c.6150390.v1
 
